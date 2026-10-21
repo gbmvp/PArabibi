@@ -1,0 +1,408 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Para a Bibi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+<style>
+/* Layout: palco escuro com aurora rosa e dourada, uma coluna central, cartões de vidro líquido que reagem ao toque. */
+:root {
+  --bg: #fbf0f1;
+  --fg: #2b1519;
+  --muted: #7d5b62;
+  --rose: #e2406f;
+  --rose-2: #ff8aa8;
+  --gold: #b9832a;
+  --gold-2: #f0c667;
+  --orb-1: rgba(255, 138, 168, .55);
+  --orb-2: rgba(240, 198, 103, .45);
+  --orb-3: rgba(190, 150, 255, .30);
+  --glass-a: rgba(255, 255, 255, .72);
+  --glass-b: rgba(255, 255, 255, .34);
+  --glass-edge: rgba(255, 255, 255, .95);
+  --glass-line: rgba(120, 50, 70, .14);
+  --glass-shadow: rgba(120, 40, 64, .20);
+  --glass-glow: rgba(255, 255, 255, .85);
+  --h1-a: #2b1519;
+  --h1-b: #c2305c;
+  --btn-fg: #ffffff;
+  --font-sans: -apple-system, "SF Pro Display", "Manrope", system-ui, "Segoe UI", sans-serif;
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c0709; --fg: #fbeff1; --muted: #c4a3ab;
+    --rose: #ff6b95; --rose-2: #ffa3bd; --gold: #e8b957; --gold-2: #ffe29a;
+    --orb-1: rgba(255, 76, 128, .50); --orb-2: rgba(232, 160, 60, .34); --orb-3: rgba(140, 90, 255, .28);
+    --glass-a: rgba(255, 255, 255, .15); --glass-b: rgba(255, 255, 255, .04);
+    --glass-edge: rgba(255, 255, 255, .55); --glass-line: rgba(255, 255, 255, .16);
+    --glass-shadow: rgba(0, 0, 0, .55); --glass-glow: rgba(255, 255, 255, .22);
+    --h1-a: #ffffff; --h1-b: #ff9db8; --btn-fg: #2b0612;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c0709; --fg: #fbeff1; --muted: #c4a3ab;
+  --rose: #ff6b95; --rose-2: #ffa3bd; --gold: #e8b957; --gold-2: #ffe29a;
+  --orb-1: rgba(255, 76, 128, .50); --orb-2: rgba(232, 160, 60, .34); --orb-3: rgba(140, 90, 255, .28);
+  --glass-a: rgba(255, 255, 255, .15); --glass-b: rgba(255, 255, 255, .04);
+  --glass-edge: rgba(255, 255, 255, .55); --glass-line: rgba(255, 255, 255, .16);
+  --glass-shadow: rgba(0, 0, 0, .55); --glass-glow: rgba(255, 255, 255, .22);
+  --h1-a: #ffffff; --h1-b: #ff9db8; --btn-fg: #2b0612;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 40; background: var(--bg);
+}
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 12px; }
+
+/* aurora */
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.aurora i {
+  position: absolute; border-radius: 50%; filter: blur(70px);
+  width: 62vmax; height: 62vmax; will-change: transform;
+}
+.aurora i:nth-child(1) { background: radial-gradient(circle, var(--orb-1), transparent 65%); top: -22vmax; left: -18vmax; animation: drift1 26s ease-in-out infinite alternate; }
+.aurora i:nth-child(2) { background: radial-gradient(circle, var(--orb-2), transparent 65%); bottom: -26vmax; right: -20vmax; animation: drift2 32s ease-in-out infinite alternate; }
+.aurora i:nth-child(3) { background: radial-gradient(circle, var(--orb-3), transparent 65%); top: 38%; left: 40%; width: 44vmax; height: 44vmax; animation: drift3 38s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate(14vmax, 10vmax) scale(1.12); } }
+@keyframes drift2 { to { transform: translate(-12vmax, -9vmax) scale(1.08); } }
+@keyframes drift3 { to { transform: translate(-10vmax, 8vmax) scale(.9); } }
+
+.wrap { width: 100%; max-width: 980px; margin-inline: auto; }
+
+/* liquid glass */
+.glass {
+  --mx: 50%; --my: 0%;
+  position: relative; isolation: isolate;
+  background:
+    radial-gradient(420px circle at var(--mx) var(--my), var(--glass-glow), transparent 55%),
+    linear-gradient(140deg, var(--glass-a), var(--glass-b));
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  backdrop-filter: blur(26px) saturate(190%);
+  border: 1px solid var(--glass-line);
+  border-radius: 32px;
+  box-shadow:
+    inset 0 1.5px 0 var(--glass-edge),
+    inset 0 -1px 0 var(--glass-line),
+    inset 1px 0 0 var(--glass-line),
+    0 30px 60px -20px var(--glass-shadow),
+    0 2px 6px var(--glass-shadow);
+}
+.glass::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, var(--glass-glow), transparent 38%);
+  opacity: .5;
+  -webkit-mask: linear-gradient(#000, transparent 70%); mask: linear-gradient(#000, transparent 70%);
+}
+
+/* nav pill */
+.nav {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 12px auto 0; max-width: 560px; padding: 10px 12px 10px 22px; border-radius: 999px;
+}
+.nav b { font-weight: 700; letter-spacing: -.01em; font-size: .98rem; }
+.nav b span { color: var(--rose); }
+.nav a.pill {
+  text-decoration: none; color: var(--btn-fg); font-weight: 600; font-size: .88rem;
+  background: linear-gradient(135deg, var(--rose-2), var(--rose));
+  padding: 9px 18px; border-radius: 999px; white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 8px 20px -8px var(--rose);
+}
+
+/* hero */
+.hero { text-align: center; padding: clamp(56px, 11vw, 120px) 0 clamp(40px, 8vw, 80px); }
+.eyebrow {
+  display: inline-block; font-size: .76rem; letter-spacing: .22em; text-transform: uppercase;
+  font-weight: 600; color: var(--muted); padding: 8px 16px; border-radius: 999px; margin-bottom: 26px;
+}
+h1 {
+  margin: 0 auto; font-weight: 800; letter-spacing: -.035em; line-height: 1.02;
+  font-size: clamp(2.7rem, 10.5vw, 6.4rem); max-width: 13ch; text-wrap: balance;
+  color: var(--h1-a);
+  background: linear-gradient(180deg, var(--h1-a) 25%, var(--h1-b));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+h1 em, h2 em {
+  font-family: var(--font-serif); font-style: italic; font-weight: 600; letter-spacing: -.01em;
+}
+.lead { margin: 26px auto 0; max-width: 34ch; font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--muted); text-wrap: balance; }
+.scroll-cue { margin-top: 38px; display: inline-flex; width: 28px; height: 46px; border-radius: 16px; padding-top: 9px; justify-content: center; }
+.scroll-cue::after { content: ""; width: 4px; height: 9px; border-radius: 4px; background: var(--rose); animation: cue 1.8s ease-in-out infinite; }
+@keyframes cue { 0%,100% { transform: translateY(0); opacity: 1; } 60% { transform: translateY(12px); opacity: .2; } }
+
+.hero > * { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+.hero > *:nth-child(2) { animation-delay: .08s; }
+.hero > *:nth-child(3) { animation-delay: .18s; }
+.hero > *:nth-child(4) { animation-delay: .3s; }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+section { padding: clamp(28px, 6vw, 64px) 0; scroll-margin-top: 90px; }
+.rev { transform: translateY(26px); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.rev.in { transform: none; }
+
+h2 {
+  margin: 0 0 18px; font-weight: 700; letter-spacing: -.03em; line-height: 1.08;
+  font-size: clamp(1.9rem, 6vw, 3.3rem); text-wrap: balance;
+}
+.kicker { font-size: .76rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--rose); margin: 0 0 14px; }
+
+/* carta */
+.letter { padding: clamp(28px, 6vw, 64px); }
+.letter .body { max-width: 58ch; }
+.letter p { margin: 0 0 1.15em; color: var(--fg); }
+.letter p.first::first-letter {
+  font-family: var(--font-serif); font-style: italic; font-weight: 600; float: left;
+  font-size: 4.6em; line-height: .8; padding: 6px 12px 0 0; color: var(--rose);
+}
+.sign { margin-top: 28px; font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: 1.6rem; color: var(--rose); }
+
+/* presente */
+.gift { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(20px, 5vw, 56px); padding: clamp(28px, 6vw, 64px); overflow: hidden; }
+.gift > * { min-width: 0; }
+.stage { display: grid; place-items: center; padding: 18px 0 34px; position: relative; }
+.rocher {
+  width: min(250px, 62vw); aspect-ratio: 1; border-radius: 50%; position: relative;
+  background:
+    radial-gradient(circle at 31% 26%, #fff3c4 0%, #f0c667 20%, #c48c2c 52%, #6d430c 100%);
+  box-shadow:
+    inset -16px -20px 40px rgba(70, 36, 6, .6),
+    inset 12px 14px 30px rgba(255, 244, 196, .65),
+    0 40px 60px -10px rgba(0, 0, 0, .45),
+    0 0 90px -10px rgba(240, 198, 103, .45);
+  animation: bob 6s ease-in-out infinite;
+}
+.rocher::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; opacity: .45; mix-blend-mode: overlay;
+  background:
+    repeating-conic-gradient(from 12deg at 38% 34%, rgba(255,255,255,.55) 0 6deg, rgba(0,0,0,.35) 6deg 13deg, transparent 13deg 21deg);
+}
+.rocher::after {
+  content: ""; position: absolute; top: 9%; left: 16%; width: 34%; height: 20%; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,255,255,.95), transparent 70%); transform: rotate(-28deg); filter: blur(2px);
+}
+.shadow { position: absolute; bottom: 8px; width: 46%; height: 16px; border-radius: 50%; background: radial-gradient(ellipse, rgba(0,0,0,.5), transparent 70%); animation: shade 6s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+@keyframes shade { 0%,100% { transform: scale(1); opacity: .9; } 50% { transform: scale(.82); opacity: .6; } }
+
+.gift p { margin: 0 0 22px; color: var(--muted); max-width: 44ch; }
+.specs { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--glass-line); }
+.specs li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--glass-line); font-size: .95rem; }
+.specs span { color: var(--muted); }
+.specs strong { font-weight: 600; text-align: right; }
+
+/* pergunta */
+.ask { text-align: center; padding: clamp(36px, 8vw, 88px) clamp(20px, 5vw, 56px); }
+.ask h2 { max-width: 16ch; margin-inline: auto; font-size: clamp(2.1rem, 7.5vw, 4.4rem); }
+.ask p { color: var(--muted); max-width: 38ch; margin: 0 auto 30px; text-wrap: balance; }
+.btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.btn {
+  appearance: none; cursor: pointer; font: inherit; font-weight: 700; font-size: 1.05rem;
+  min-height: 56px; padding: 0 30px; border-radius: 999px; border: 1px solid var(--glass-line);
+  transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;
+}
+.btn:hover { transform: translateY(-2px) scale(1.02); }
+.btn:active { transform: scale(.97); }
+.btn.yes {
+  color: var(--btn-fg); border-color: transparent;
+  background: linear-gradient(135deg, var(--rose-2), var(--rose));
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.6), 0 16px 36px -10px var(--rose);
+}
+.btn.soft {
+  color: var(--fg);
+  background: linear-gradient(140deg, var(--glass-a), var(--glass-b));
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 var(--glass-edge);
+}
+#maybe { margin-top: 24px; min-height: 1.7em; color: var(--rose); font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: 1.35rem; }
+.thanks h2 { max-width: 14ch; }
+.thanks .small { font-size: .9rem; color: var(--muted); margin-top: 22px; }
+.linkbtn { background: none; border: 0; color: var(--muted); text-decoration: underline; font: inherit; font-size: .9rem; cursor: pointer; padding: 10px; }
+
+footer { text-align: center; color: var(--muted); font-size: .85rem; padding-top: 28px; }
+footer span { color: var(--rose); }
+
+/* corações */
+.hearts { position: fixed; inset: 0; pointer-events: none; z-index: 60; overflow: hidden; }
+.heart { position: absolute; color: var(--rose); font-size: 22px; line-height: 1; animation: fly 2.1s cubic-bezier(.15,.7,.3,1) forwards; text-shadow: 0 0 14px var(--rose); }
+@keyframes fly { 0% { transform: translate(0,0) scale(.3); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(1.3) rotate(var(--r)); opacity: 0; } }
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .glass { border-radius: 26px; }
+  .gift { grid-template-columns: 1fr; }
+  .nav { padding-left: 18px; }
+  .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rev { transform: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+
+<div class="wrap">
+  <nav class="nav glass" aria-label="Navegação">
+    <b>Para a <span>Bibi</span></b>
+    <a class="pill" href="#resposta">Responder</a>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow glass">Uma surpresa para você</span>
+    <h1>Bibi, tem algo que eu preciso <em>te dizer.</em></h1>
+    <p class="lead">Reservei este espaço só para você. Leia com calma, sem pressa.</p>
+    <div><span class="scroll-cue glass" aria-hidden="true"></span></div>
+  </header>
+
+  <section id="carta" class="rev">
+    <article class="letter glass">
+      <p class="kicker">O que eu sinto</p>
+      <h2>Algumas pessoas chegam sem fazer barulho e <em>mudam tudo.</em></h2>
+      <div class="body">
+        <p class="first">Tem gente que aparece de mansinho e, mesmo assim, muda o jeito como o dia inteiro parece. Com você foi exatamente assim.</p>
+        <p>Eu gosto muito de você, Bibi. Gosto do seu jeito, da sua risada, da leveza que você carrega sem perceber. Gosto de como qualquer conversa fica melhor quando você está nela.</p>
+        <p>Pensei em muitas formas de dizer isso. No fim, escolhi a mais sincera: construir algo só para você, com todo o cuidado que você merece.</p>
+      </div>
+      <div class="sign" id="sign">Com carinho</div>
+    </article>
+  </section>
+
+  <section id="presente" class="rev">
+    <div class="gift glass">
+      <div>
+        <p class="kicker">No seu aniversário</p>
+        <h2>Um <em>Ferrero Rocher,</em> só seu.</h2>
+        <p>Quando chegar o seu dia, vou te dar um Ferrero Rocher de presente. É um gesto pequeno, escolhido com carinho, para o seu aniversário começar com um sorriso.</p>
+        <ul class="specs">
+          <li><span>Para</span><strong>Bibi</strong></li>
+          <li><span>Presente</span><strong>Ferrero Rocher</strong></li>
+          <li><span>Entrega</span><strong>Em mãos, no seu aniversário</strong></li>
+        </ul>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <div class="rocher"></div>
+        <div class="shadow"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resposta" class="rev">
+    <div class="ask glass" id="ask">
+      <p class="kicker">Agora é com você</p>
+      <h2>Eu estava só esperando a sua <em>resposta.</em></h2>
+      <p>Sem pressão nenhuma. Responda no seu tempo, do jeito que o seu coração mandar.</p>
+      <div class="btns">
+        <button class="btn yes" id="btnYes" type="button">Sim, eu aceito</button>
+        <button class="btn soft" id="btnMaybe" type="button">Preciso de um tempinho</button>
+      </div>
+      <div id="maybe" aria-live="polite"></div>
+    </div>
+
+    <div class="ask thanks glass" id="yes" hidden>
+      <p class="kicker">Ela disse sim</p>
+      <h2>Obrigado, Bibi. Você me <em>fez feliz.</em></h2>
+      <p>Então está combinado. No seu aniversário, o Ferrero Rocher é seu, e eu vou entregar pessoalmente.</p>
+      <p class="small">Tire um print desta tela e me envie. Quero guardar este momento.</p>
+      <button class="linkbtn" id="btnAgain" type="button">Responder de novo</button>
+    </div>
+  </section>
+
+  <footer>Feito com carinho por Gabriel, especialmente para Bibi. ❤️ <span>&hearts;</span></footer>
+</div>
+
+<script>
+(function () {
+  var NOME = ""; /* opcional: coloque o seu nome aqui para assinar a carta */
+  if (NOME) { document.getElementById("sign").textContent = "Com carinho, " + NOME; }
+
+  /* brilho que segue o toque */
+  function track(e) {
+    var t = e.target.closest ? e.target.closest(".glass") : null;
+    if (!t) return;
+    var r = t.getBoundingClientRect();
+    t.style.setProperty("--mx", (e.clientX - r.left) + "px");
+    t.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }
+  document.addEventListener("pointermove", track, { passive: true });
+  document.addEventListener("pointerdown", track, { passive: true });
+
+  /* revelar ao rolar (só movimento, o texto já está visível) */
+  var revs = document.querySelectorAll(".rev");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revs.forEach(function (el) { io.observe(el); });
+  } else { revs.forEach(function (el) { el.classList.add("in"); }); }
+
+  /* corações */
+  var box = document.getElementById("hearts");
+  function burst(x, y) {
+    for (var i = 0; i < 26; i++) {
+      var h = document.createElement("span");
+      h.className = "heart"; h.textContent = "♥";
+      var a = Math.random() * Math.PI * 2, d = 90 + Math.random() * 190;
+      h.style.left = x + "px"; h.style.top = y + "px";
+      h.style.fontSize = (14 + Math.random() * 24) + "px";
+      h.style.setProperty("--dx", Math.cos(a) * d + "px");
+      h.style.setProperty("--dy", (Math.sin(a) * d - 90) + "px");
+      h.style.setProperty("--r", (Math.random() * 60 - 30) + "deg");
+      box.appendChild(h);
+      setTimeout(function (el) { return function () { el.remove(); }; }(h), 2300);
+    }
+  }
+
+  var ask = document.getElementById("ask"), yes = document.getElementById("yes"), maybe = document.getElementById("maybe");
+  function save(v) { try { localStorage.setItem("bibi-resposta", v); } catch (e) {} }
+  function load() { try { return localStorage.getItem("bibi-resposta"); } catch (e) { return null; } }
+  function showYes() { ask.hidden = true; yes.hidden = false; }
+
+  document.getElementById("btnYes").addEventListener("click", function (e) {
+    var r = e.currentTarget.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2);
+    save("sim");
+    setTimeout(function () {
+      showYes();
+      yes.scrollIntoView({ behavior: "smooth", block: "center" });
+      var q = yes.getBoundingClientRect();
+      burst(q.left + q.width / 2, q.top + q.height / 3);
+    }, 450);
+  });
+
+  var msgs = [
+    "Tudo bem. Eu espero com carinho.",
+    "Sem pressa nenhuma. A resposta continua aqui.",
+    "Pode pensar. Eu não vou a lugar nenhum."
+  ], n = 0;
+  document.getElementById("btnMaybe").addEventListener("click", function () {
+    maybe.textContent = msgs[n % msgs.length]; n++;
+  });
+
+  document.getElementById("btnAgain").addEventListener("click", function () {
+    save(""); yes.hidden = true; ask.hidden = false; maybe.textContent = "";
+  });
+
+  if (load() === "sim") showYes();
+})();
+</script>
+
+</body></html>
